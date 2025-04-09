@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { LibroController } from './libro.controller';
 import { LibroService } from './libro.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { CreateLibroDto } from './dto/create-libro.dto';
 import { FindLibroDto } from './dto/find-libro.dto';
 import { UpdateLibroDto } from './dto/update-libro.dto';

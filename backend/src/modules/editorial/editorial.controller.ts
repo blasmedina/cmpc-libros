@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { EditorialService } from './editorial.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { CreateEditorialDto } from './dto/create-editorial.dto';
 import { UpdateEditorialDto } from './dto/update-editorial.dto';
 

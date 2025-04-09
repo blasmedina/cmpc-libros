@@ -4,11 +4,11 @@ import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { sequelizeConfig } from './config/sequelize.config';
 import { ConfigModule } from '@nestjs/config';
-import { LibroModule } from './libro/libro.module';
-import { AutorModule } from './autor/autor.module';
-import { EditorialModule } from './editorial/editorial.module';
-import { GeneroModule } from './genero/genero.module';
-import { AuthModule } from './auth/auth.module';
+import { LibroModule } from './modules/libro/libro.module';
+import { AutorModule } from './modules/autor/autor.module';
+import { EditorialModule } from './modules/editorial/editorial.module';
+import { GeneroModule } from './modules/genero/genero.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { JoiValidationSchema } from './config/joi-validation-schema';
 
 @Module({

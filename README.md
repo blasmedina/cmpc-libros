@@ -105,61 +105,67 @@ La API del Backend está documentada utilizando **Swagger**. Accede a la documen
 ## Testing Backend
 
 ```txt
----------------------------|---------|----------|---------|---------|-------------------
-File                       | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
----------------------------|---------|----------|---------|---------|-------------------
-All files                  |   89.51 |    35.48 |    71.6 |   90.78 |                   
- src                       |     100 |      100 |     100 |     100 |                   
-  app.controller.ts        |     100 |      100 |     100 |     100 |                   
-  app.service.ts           |     100 |      100 |     100 |     100 |                   
- src/auth                  |     100 |    33.33 |     100 |     100 |                   
-  auth.controller.ts       |     100 |      100 |     100 |     100 |                   
-  auth.service.ts          |     100 |        0 |     100 |     100 | 8                 
-  jwt-auth.guard.ts        |     100 |      100 |     100 |     100 |                   
-  jwt.strategy.ts          |     100 |       50 |     100 |     100 | 11                
- src/autor                 |     100 |      100 |     100 |     100 |                   
-  autor.controller.ts      |     100 |      100 |     100 |     100 |                   
-  autor.service.ts         |     100 |      100 |     100 |     100 |                   
- src/autor/dto             |     100 |      100 |     100 |     100 |                   
-  create-autor.dto.ts      |     100 |      100 |     100 |     100 |                   
-  update-autor.dto.ts      |     100 |      100 |     100 |     100 |                   
- src/autor/entities        |    87.5 |      100 |       0 |   83.33 |                   
-  autor.entity.ts          |    87.5 |      100 |       0 |   83.33 | 12                
- src/config                |     100 |      100 |     100 |     100 |                   
-  joi-validation-schema.ts |     100 |      100 |     100 |     100 |                   
- src/editorial             |     100 |      100 |     100 |     100 |                   
-  editorial.controller.ts  |     100 |      100 |     100 |     100 |                   
-  editorial.service.ts     |     100 |      100 |     100 |     100 |                   
- src/editorial/dto         |     100 |      100 |     100 |     100 |                   
-  create-editorial.dto.ts  |     100 |      100 |     100 |     100 |                   
-  update-editorial.dto.ts  |     100 |      100 |     100 |     100 |                   
- src/editorial/entities    |    87.5 |      100 |       0 |   83.33 |                   
-  editorial.entity.ts      |    87.5 |      100 |       0 |   83.33 | 12                
- src/genero                |     100 |      100 |     100 |     100 |                   
-  genero.controller.ts     |     100 |      100 |     100 |     100 |                   
-  genero.service.ts        |     100 |      100 |     100 |     100 |                   
- src/genero/dto            |     100 |      100 |     100 |     100 |                   
-  create-genero.dto.ts     |     100 |      100 |     100 |     100 |                   
-  update-genero.dto.ts     |     100 |      100 |     100 |     100 |                   
- src/genero/entities       |    87.5 |      100 |       0 |   83.33 |                   
-  genero.entity.ts         |    87.5 |      100 |       0 |   83.33 | 9                 
- src/libro                 |   83.95 |    46.66 |   86.66 |   88.73 |                   
-  libro.controller.ts      |   84.21 |      100 |      75 |   83.33 | 50-53,145-148     
-  libro.service.ts         |   83.72 |    38.46 |     100 |   94.28 | 69-70             
- src/libro/dto             |   65.11 |        0 |       0 |   71.79 |                   
-  create-libro.dto.ts      |   70.58 |        0 |       0 |   70.58 | 22,33,43,53,63    
-  find-libro.dto.ts        |   56.52 |      100 |       0 |   68.42 | 14,20,26,35,55,66 
-  update-libro.dto.ts      |     100 |      100 |     100 |     100 |                   
- src/libro/entities        |      75 |      100 |       0 |   72.72 |                   
-  libro.entity.ts          |      75 |      100 |       0 |   72.72 | 28,32,35,39,42,46 
- src/mocks                 |     100 |      100 |     100 |     100 |                   
-  mockRepository.ts        |     100 |      100 |     100 |     100 |                   
----------------------------|---------|----------|---------|---------|-------------------
+--------------------------------|---------|----------|---------|---------|-------------------
+File                            | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------------------|---------|----------|---------|---------|-------------------
+All files                       |   90.83 |    35.48 |   73.17 |   92.23 |                   
+ src                            |     100 |      100 |     100 |     100 |                   
+  app.controller.ts             |     100 |      100 |     100 |     100 |                   
+  app.service.ts                |     100 |      100 |     100 |     100 |                   
+ src/common/decorators          |      75 |      100 |      50 |   72.72 |                   
+  upload-image.decorator.ts     |      75 |      100 |      50 |   72.72 | 20-22             
+ src/common/guards              |     100 |      100 |     100 |     100 |                   
+  jwt-auth.guard.ts             |     100 |      100 |     100 |     100 |                   
+ src/config                     |     100 |      100 |     100 |     100 |                   
+  joi-validation-schema.ts      |     100 |      100 |     100 |     100 |                   
+ src/mocks                      |     100 |      100 |     100 |     100 |                   
+  mockRepository.ts             |     100 |      100 |     100 |     100 |                   
+ src/modules/auth               |     100 |        0 |     100 |     100 |                   
+  auth.controller.ts            |     100 |      100 |     100 |     100 |                   
+  auth.service.ts               |     100 |        0 |     100 |     100 | 8                 
+ src/modules/autor              |     100 |      100 |     100 |     100 |                   
+  autor.controller.ts           |     100 |      100 |     100 |     100 |                   
+  autor.service.ts              |     100 |      100 |     100 |     100 |                   
+ src/modules/autor/dto          |     100 |      100 |     100 |     100 |                   
+  create-autor.dto.ts           |     100 |      100 |     100 |     100 |                   
+  update-autor.dto.ts           |     100 |      100 |     100 |     100 |                   
+ src/modules/autor/entities     |    87.5 |      100 |       0 |   83.33 |                   
+  autor.entity.ts               |    87.5 |      100 |       0 |   83.33 | 12                
+ src/modules/editorial          |     100 |      100 |     100 |     100 |                   
+  editorial.controller.ts       |     100 |      100 |     100 |     100 |                   
+  editorial.service.ts          |     100 |      100 |     100 |     100 |                   
+ src/modules/editorial/dto      |     100 |      100 |     100 |     100 |                   
+  create-editorial.dto.ts       |     100 |      100 |     100 |     100 |                   
+  update-editorial.dto.ts       |     100 |      100 |     100 |     100 |                   
+ src/modules/editorial/entities |    87.5 |      100 |       0 |   83.33 |                   
+  editorial.entity.ts           |    87.5 |      100 |       0 |   83.33 | 12                
+ src/modules/genero             |     100 |      100 |     100 |     100 |                   
+  genero.controller.ts          |     100 |      100 |     100 |     100 |                   
+  genero.service.ts             |     100 |      100 |     100 |     100 |                   
+ src/modules/genero/dto         |     100 |      100 |     100 |     100 |                   
+  create-genero.dto.ts          |     100 |      100 |     100 |     100 |                   
+  update-genero.dto.ts          |     100 |      100 |     100 |     100 |                   
+ src/modules/genero/entities    |    87.5 |      100 |       0 |   83.33 |                   
+  genero.entity.ts              |    87.5 |      100 |       0 |   83.33 | 9                 
+ src/modules/libro              |   91.42 |    46.66 |     100 |   98.33 |                   
+  libro.controller.ts           |     100 |      100 |     100 |     100 |                   
+  libro.service.ts              |   85.36 |    38.46 |     100 |   96.96 | 68                
+ src/modules/libro/dto          |   65.11 |        0 |       0 |   71.79 |                   
+  create-libro.dto.ts           |   70.58 |        0 |       0 |   70.58 | 22,33,43,53,63    
+  find-libro.dto.ts             |   56.52 |      100 |       0 |   68.42 | 14,20,26,35,55,66 
+  update-libro.dto.ts           |     100 |      100 |     100 |     100 |                   
+ src/modules/libro/entities     |      75 |      100 |       0 |   72.72 |                   
+  libro.entity.ts               |      75 |      100 |       0 |   72.72 | 28,32,35,39,42,46 
+ src/strategies                 |     100 |       50 |     100 |     100 |                   
+  jwt.strategy.ts               |     100 |       50 |     100 |     100 | 11                
+ src/utils                      |     100 |      100 |     100 |     100 |                   
+  delete-uploaded-file.util.ts  |     100 |      100 |     100 |     100 |                   
+--------------------------------|---------|----------|---------|---------|-------------------
 
-Test Suites: 13 passed, 13 total
-Tests:       67 passed, 67 total
+Test Suites: 14 passed, 14 total
+Tests:       69 passed, 69 total
 Snapshots:   0 total
-Time:        24.624 s
+Time:        20.658 s
 ```
 
 ## Testing Frontend

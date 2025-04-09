@@ -12,17 +12,17 @@ async function bootstrap() {
   const description = require('../package.json').description;
 
   app.enableCors({
-    origin: 'http://localhost:5173', // o el puerto de tu frontend
-    credentials: true, // si usás cookies o auth con cabeceras
+    origin: 'http://localhost:5173',
+    credentials: true,
   });
 
   app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true, // solo permite campos definidos en el DTO
-      forbidNonWhitelisted: true, // lanza error si mandás campos extra
-      transform: true, // transforma tipos (por ejemplo, string -> boolean)
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
     }),
   );
 

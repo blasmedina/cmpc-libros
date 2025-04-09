@@ -4,8 +4,7 @@ import { Libro } from './entities/libro.entity';
 import { Op } from 'sequelize';
 import { FindLibroDto } from './dto/find-libro.dto';
 import { UpdateLibroDto } from './dto/update-libro.dto';
-import * as fs from 'fs';
-import * as path from 'path';
+import { deleteUploadedFile } from 'src/utils/delete-uploaded-file.util';
 
 @Injectable()
 export class LibroService {
@@ -66,8 +65,7 @@ export class LibroService {
 
     try {
       if (updateLibroDto.imagenUrl) {
-        const imagePath = path.join(__dirname, '..', '..', libro.imagenUrl);
-        fs.unlinkSync(imagePath);
+        deleteUploadedFile(libro.imagenUrl);
       }
     } catch (error) {}
 

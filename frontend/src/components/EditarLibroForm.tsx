@@ -8,6 +8,7 @@ import Label from "./ui/Label";
 import GenerosSelector from "./GenerosSelector";
 import DisponibilidadSelector from "./DisponibilidadSelector";
 import { PATHS } from "../config/constants";
+import AutoresSelector from "./AutoresSelector";
 
 const EditarLibroForm = () => {
   const [titulo, setTitulo] = useState("");
@@ -85,12 +86,11 @@ const EditarLibroForm = () => {
         </div>
         <div>
           <Label>Autor</Label>
-          <Input
-            type="text"
-            placeholder="Autor"
+          <AutoresSelector
+            name="autorId"
             value={autorId}
-            onChange={(e) => setAutorId(e.target.value)}
             required
+            onChange={(e) => setAutorId(e.target.value)}
           />
         </div>
         <div>
@@ -99,7 +99,6 @@ const EditarLibroForm = () => {
             name="editorialId"
             value={editorialId}
             onChange={(e) => setEditorialId(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md"
             required
           />
         </div>

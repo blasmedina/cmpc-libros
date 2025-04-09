@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { GeneroController } from './genero.controller';
 import { GeneroService } from './genero.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 
 describe('GeneroController', () => {
   let controller: GeneroController;

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { EditorialController } from './editorial.controller';
 import { EditorialService } from './editorial.service';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 
 describe('EditorialController', () => {
   let controller: EditorialController;

@@ -7,9 +7,9 @@ import {
   BelongsTo,
   DeletedAt,
 } from 'sequelize-typescript';
-import { Autor } from '../../autor/entities/autor.entity';
-import { Editorial } from '../../editorial/entities/editorial.entity';
-import { Genero } from '../../genero/entities/genero.entity';
+import { Autor } from 'src/modules/autor/entities/autor.entity';
+import { Editorial } from 'src/modules/editorial/entities/editorial.entity';
+import { Genero } from 'src/modules/genero/entities/genero.entity';
 
 @Table
 export class Libro extends Model {

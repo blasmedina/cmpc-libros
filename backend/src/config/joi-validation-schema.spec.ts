@@ -1,5 +1,4 @@
 import { JoiValidationSchema } from './joi-validation-schema';
-import * as Joi from 'joi';
 
 describe('JoiValidationSchema', () => {
   const validEnv = {

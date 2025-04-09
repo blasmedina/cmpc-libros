@@ -1,8 +1,8 @@
 import { Column, Model, Table, HasMany, DataType } from 'sequelize-typescript';
-import { Libro } from '../../libro/entities/libro.entity';
+import { Libro } from 'src/modules/libro/entities/libro.entity';
 
 @Table
-export class Autor extends Model<Autor> {
+export class Editorial extends Model {
   @Column({
     type: DataType.STRING,
     allowNull: false,
