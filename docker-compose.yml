@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:14-alpine
+    container_name: cmpc-libros-db
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${DB_PORT_HOST}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    mem_limit: ${MEM_LIMIT}
+    cpus: ${CPUS}
+
+  backend:
+    build: ./backend
+    container_name: cmpc-libros-backend
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      JWT_SECRET: ${JWT_SECRET}
+    ports:
+      - "${BACKEND_PORT_HOST}:3000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run start:dev
+
+  frontend:
+    build: ./frontend
+    container_name: cmpc-libros-frontend
+    ports:
+      - "${FRONTEND_PORT_HOST}:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      NODE_ENV: ${NODE_ENV}
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
