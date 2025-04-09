@@ -88,12 +88,32 @@ describe('LibroController', () => {
     expect(service.findOne).toHaveBeenCalledWith(1);
   });
 
-  it('should update a libro', async () => {
+  it('should update a libro with image', async () => {
     const dto: UpdateLibroDto = { titulo: 'Nuevo título' } as any;
+    const mockFile = { filename: 'nueva-imagen.jpg' } as Express.Multer.File;
+
+    const expectedDto = {
+      ...dto,
+      imagenUrl: '/uploads/nueva-imagen.jpg',
+    };
+
+    const result = { id: 1, ...expectedDto };
+    mockLibroService.update.mockResolvedValue(result);
+
+    const updated = await controller.update('1', dto, mockFile);
+
+    expect(updated).toEqual(result);
+    expect(service.update).toHaveBeenCalledWith(1, expectedDto);
+  });
+
+  it('should update a libro without image', async () => {
+    const dto: UpdateLibroDto = { titulo: 'Nuevo título sin imagen' } as any;
     const result = { id: 1, ...dto };
     mockLibroService.update.mockResolvedValue(result);
 
-    expect(await controller.update('1', dto)).toEqual(result);
+    const updated = await controller.update('1', dto, undefined);
+
+    expect(updated).toEqual(result);
     expect(service.update).toHaveBeenCalledWith(1, dto);
   });
 

@@ -108,7 +108,7 @@ La API del Backend está documentada utilizando **Swagger**. Accede a la documen
 ---------------------------|---------|----------|---------|---------|-------------------
 File                       | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ---------------------------|---------|----------|---------|---------|-------------------
-All files                  |   90.69 |    34.48 |    72.5 |    92.2 |                   
+All files                  |   89.51 |    35.48 |    71.6 |   90.78 |                   
  src                       |     100 |      100 |     100 |     100 |                   
   app.controller.ts        |     100 |      100 |     100 |     100 |                   
   app.service.ts           |     100 |      100 |     100 |     100 |                   
@@ -143,10 +143,10 @@ All files                  |   90.69 |    34.48 |    72.5 |    92.2 |
   update-genero.dto.ts     |     100 |      100 |     100 |     100 |                   
  src/genero/entities       |    87.5 |      100 |       0 |   83.33 |                   
   genero.entity.ts         |    87.5 |      100 |       0 |   83.33 | 9                 
- src/libro                 |    88.4 |    46.15 |   92.85 |   94.91 |                   
-  libro.controller.ts      |   90.62 |      100 |   85.71 |      90 | 50-53             
-  libro.service.ts         |   86.48 |    41.66 |     100 |     100 | 28-29,36-40       
- src/libro/dto             |   67.39 |        0 |       0 |    73.8 |                   
+ src/libro                 |   83.95 |    46.66 |   86.66 |   88.73 |                   
+  libro.controller.ts      |   84.21 |      100 |      75 |   83.33 | 50-53,145-148     
+  libro.service.ts         |   83.72 |    38.46 |     100 |   94.28 | 69-70             
+ src/libro/dto             |   65.11 |        0 |       0 |   71.79 |                   
   create-libro.dto.ts      |   70.58 |        0 |       0 |   70.58 | 22,33,43,53,63    
   find-libro.dto.ts        |   56.52 |      100 |       0 |   68.42 | 14,20,26,35,55,66 
   update-libro.dto.ts      |     100 |      100 |     100 |     100 |                   

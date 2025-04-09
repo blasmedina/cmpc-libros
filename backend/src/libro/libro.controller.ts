@@ -132,7 +132,34 @@ export class LibroController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateLibroDto: UpdateLibroDto) {
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    description: 'Datos del libro y la imagen',
+    type: UpdateLibroDto,
+  })
+  @UseInterceptors(
+    FileInterceptor('imagen', {
+      storage: diskStorage({
+        destination: './uploads',
+        filename: (req, file, callback) => {
+          const fileExtension = path.extname(file.originalname);
+          const filename = `${crypto.randomBytes(16).toString('hex')}${fileExtension}`;
+
+          callback(null, filename);
+        },
+      }),
+    }),
+  )
+  update(
+    @Param('id') id: string,
+    @Body() updateLibroDto: UpdateLibroDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    if (file) {
+      const imageUrl = `/uploads/${file.filename}`;
+      updateLibroDto.imagenUrl = imageUrl;
+    }
+
     return this.libroService.update(+id, updateLibroDto);
   }
 

@@ -15,6 +15,7 @@ const EditarLibroForm = () => {
   const [editorialId, setEditorialId] = useState("");
   const [generoId, setGeneroId] = useState("");
   const [precio, setPrecio] = useState(0);
+  const [imagen, setImagen] = useState<File | null>(null);
   const [imagenUrl, setImagenUrl] = useState("");
   const [disponible, setDisponible] = useState(true);
   const { id } = useParams();
@@ -42,15 +43,19 @@ const EditarLibroForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const updatedLibro = {
-        titulo,
-        autorId,
-        editorialId,
-        generoId,
-        precio,
-        disponible,
-      };
-      await updateLibro(id!, updatedLibro);
+      const formData = new FormData();
+      formData.append("titulo", titulo);
+      formData.append("autorId", autorId);
+      formData.append("editorialId", editorialId);
+      formData.append("precio", precio.toString());
+      formData.append("disponible", disponible.toString());
+      formData.append("generoId", generoId);
+
+      if (imagen) {
+        formData.append("imagen", imagen);
+      }
+
+      await updateLibro(id!, formData);
       navigate(PATHS.LIBRO_INDEX);
     } catch (err) {
       alert("Error al actualizar el libro");
@@ -129,8 +134,21 @@ const EditarLibroForm = () => {
             onChange={() => setDisponible(!disponible)}
           />
         </div>
-        <div></div>
         <div>
+          <Label>Imagen</Label>
+          <Input
+            type="file"
+            accept="image/*"
+            className="block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4
+             file:rounded-full file:border-0
+             file:text-sm file:font-semibold
+             file:bg-blue-50 file:text-blue-700
+             hover:file:bg-blue-100"
+            onChange={(e) => setImagen(e.target.files?.[0] || null)}
+          />
+        </div>
+        <div>
+          <Label>Imagen actual</Label>
           <img
             src={getImageUrl(imagenUrl)}
             className="object-scale-down rounded-md border"

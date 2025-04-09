@@ -92,8 +92,12 @@ export const getLibro = async (id: string) => {
   return data;
 };
 
-export const updateLibro = async (id: string, libroData: any) => {
-  const response = await api.put(`/libros/${id}`, libroData);
+export const updateLibro = async (id: string, payload: FormData) => {
+  const response = await api.put(`/libros/${id}`, payload, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return response.data;
 };
 

@@ -4,6 +4,8 @@ import { Libro } from './entities/libro.entity';
 import { Op } from 'sequelize';
 import { FindLibroDto } from './dto/find-libro.dto';
 import { UpdateLibroDto } from './dto/update-libro.dto';
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class LibroService {
@@ -61,6 +63,14 @@ export class LibroService {
 
   async update(id: number, updateLibroDto: UpdateLibroDto) {
     const libro = await this.findOne(id);
+
+    try {
+      if (updateLibroDto.imagenUrl) {
+        const imagePath = path.join(__dirname, '..', '..', libro.imagenUrl);
+        fs.unlinkSync(imagePath);
+      }
+    } catch (error) {}
+
     return libro.update(updateLibroDto as any);
   }
 
