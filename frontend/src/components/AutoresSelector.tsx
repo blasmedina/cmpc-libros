@@ -4,9 +4,9 @@ import { Select, SelectProps } from "./ui/Select";
 import { getAutores } from "../api/axios";
 import { Autor } from "../types/autor";
 
-interface SelectAutoresProps extends Omit<SelectProps, "children"> {}
+interface AutoresSelectorProps extends Omit<SelectProps, "children"> {}
 
-const SelectAutores: React.FC<SelectAutoresProps> = ({ ...props }) => {
+const AutoresSelector: React.FC<AutoresSelectorProps> = ({ ...props }) => {
   const [autores, setAutores] = useState<Autor[]>([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const SelectAutores: React.FC<SelectAutoresProps> = ({ ...props }) => {
 
   return (
     <Select {...props}>
-      <option value="">Selecciona un autor</option>
+      <option value="">Seleccione un autor</option>
       {autores.map((autor) => (
         <option key={autor.id} value={autor.id}>
           {autor.nombre}
@@ -34,4 +34,4 @@ const SelectAutores: React.FC<SelectAutoresProps> = ({ ...props }) => {
   );
 };
 
-export default SelectAutores;
+export default AutoresSelector;

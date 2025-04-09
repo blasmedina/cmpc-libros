@@ -5,8 +5,10 @@ import { Editorial } from "../types/editorial";
 import { Libro } from "../types/libro";
 import { PaginatedData } from "../types/paginatedData";
 
+const baseURL = import.meta.env.VITE_ENDPOINT_API;
+
 const api = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL,
 });
 
 api.interceptors.response.use(
@@ -53,8 +55,12 @@ export const getLibros = async (params: any) => {
   return data;
 };
 
-export const createLibro = async (payload: any) => {
-  const { data } = await api.post<Libro>("/libros", payload);
+export const createLibro = async (payload: FormData) => {
+  const { data } = await api.post<Libro>("/libros", payload, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 
   return data;
 };
@@ -75,6 +81,20 @@ export const getEditoriales = async () => {
   const { data } = await api.get<Editorial[]>("/editoriales");
 
   return data;
+};
+
+export const getImageUrl = (imageUrl: string) => {
+  return `${baseURL}${imageUrl}`;
+};
+
+export const getLibro = async (id: string) => {
+  const { data } = await api.get<Libro>(`/libros/${id}`);
+  return data;
+};
+
+export const updateLibro = async (id: string, libroData: any) => {
+  const response = await api.put(`/libros/${id}`, libroData);
+  return response.data;
 };
 
 export default api;

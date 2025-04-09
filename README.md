@@ -108,7 +108,7 @@ La API del Backend está documentada utilizando **Swagger**. Accede a la documen
 ---------------------------|---------|----------|---------|---------|-------------------
 File                       | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ---------------------------|---------|----------|---------|---------|-------------------
-All files                  |   91.76 |     37.5 |   75.32 |   93.54 |                   
+All files                  |   90.69 |    34.48 |    72.5 |    92.2 |                   
  src                       |     100 |      100 |     100 |     100 |                   
   app.controller.ts        |     100 |      100 |     100 |     100 |                   
   app.service.ts           |     100 |      100 |     100 |     100 |                   
@@ -143,18 +143,23 @@ All files                  |   91.76 |     37.5 |   75.32 |   93.54 |
   update-genero.dto.ts     |     100 |      100 |     100 |     100 |                   
  src/genero/entities       |    87.5 |      100 |       0 |   83.33 |                   
   genero.entity.ts         |    87.5 |      100 |       0 |   83.33 | 9                 
- src/libro                 |   91.22 |    41.66 |     100 |     100 |                   
-  libro.controller.ts      |     100 |      100 |     100 |     100 |                   
-  libro.service.ts         |   85.71 |    41.66 |     100 |     100 | 26-27,34-38       
- src/libro/dto             |   69.04 |        0 |       0 |   76.31 |                   
-  create-libro.dto.ts      |   76.92 |        0 |       0 |   76.92 | 39,49,59          
-  find-libro.dto.ts        |   56.52 |      100 |       0 |   68.42 | 9,15,21,26,38,44  
+ src/libro                 |    88.4 |    46.15 |   92.85 |   94.91 |                   
+  libro.controller.ts      |   90.62 |      100 |   85.71 |      90 | 50-53             
+  libro.service.ts         |   86.48 |    41.66 |     100 |     100 | 28-29,36-40       
+ src/libro/dto             |   67.39 |        0 |       0 |    73.8 |                   
+  create-libro.dto.ts      |   70.58 |        0 |       0 |   70.58 | 22,33,43,53,63    
+  find-libro.dto.ts        |   56.52 |      100 |       0 |   68.42 | 14,20,26,35,55,66 
   update-libro.dto.ts      |     100 |      100 |     100 |     100 |                   
  src/libro/entities        |      75 |      100 |       0 |   72.72 |                   
   libro.entity.ts          |      75 |      100 |       0 |   72.72 | 28,32,35,39,42,46 
  src/mocks                 |     100 |      100 |     100 |     100 |                   
   mockRepository.ts        |     100 |      100 |     100 |     100 |                   
 ---------------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 13 passed, 13 total
+Tests:       67 passed, 67 total
+Snapshots:   0 total
+Time:        24.624 s
 ```
 
 ## Testing Frontend

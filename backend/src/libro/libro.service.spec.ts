@@ -37,14 +37,37 @@ describe('LibroService', () => {
     expect(repository).toBeDefined();
   });
 
-  it('should create a libro', async () => {
-    const data = { titulo: 'Libro de prueba' };
-    mockLibroRepository.create.mockResolvedValue(data);
+  it('should create a libro and rehydrate it', async () => {
+    const createdLibro = { id: 1, titulo: 'Libro de prueba' };
+    const libroWithRelations = {
+      ...createdLibro,
+      autor: { id: 1, nombre: 'Autor' },
+      genero: { id: 1, nombre: 'Género' },
+      editorial: { id: 1, nombre: 'Editorial' },
+    };
 
-    const result = await service.create(data);
-    expect(result).toEqual(data);
-    expect(mockLibroRepository.create).toHaveBeenCalledWith(data);
+    mockLibroRepository.create.mockResolvedValue(createdLibro);
+    mockLibroRepository.findByPk.mockResolvedValue(libroWithRelations);
+
+    const result = await service.create({ titulo: 'Libro de prueba' });
+
+    expect(mockLibroRepository.create).toHaveBeenCalledWith({
+      titulo: 'Libro de prueba',
+    });
+    expect(mockLibroRepository.findByPk).toHaveBeenCalledWith(1, {
+      include: { all: true },
+    });
+    expect(result).toEqual(libroWithRelations);
   });
+
+  // it('should create a libro', async () => {
+  //   const data = { titulo: 'Libro de prueba' };
+  //   mockLibroRepository.create.mockResolvedValue(data);
+
+  //   const result = await service.create(data);
+  //   expect(result).toEqual(data);
+  //   expect(mockLibroRepository.create).toHaveBeenCalledWith(data);
+  // });
 
   it('should return libros with filters', async () => {
     const mockResponse = { rows: [], count: 0 };

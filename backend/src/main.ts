@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { Logger, ValidationPipe } from '@nestjs/common';
+import * as express from 'express';
+import * as path from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -13,6 +15,8 @@ async function bootstrap() {
     origin: 'http://localhost:5173', // o el puerto de tu frontend
     credentials: true, // si usás cookies o auth con cabeceras
   });
+
+  app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
   app.useGlobalPipes(
     new ValidationPipe({

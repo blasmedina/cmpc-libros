@@ -7,14 +7,27 @@ import {
   Put,
   Delete,
   UseGuards,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { LibroService } from './libro.service';
 import { Query } from '@nestjs/common';
 import { FindLibroDto } from './dto/find-libro.dto';
-import { ApiTags, ApiQuery, ApiBearerAuth } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiQuery,
+  ApiBearerAuth,
+  ApiConsumes,
+  ApiBody,
+} from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateLibroDto } from './dto/create-libro.dto';
 import { UpdateLibroDto } from './dto/update-libro.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Express } from 'express';
+import * as path from 'path';
+import * as crypto from 'crypto';
+import { diskStorage } from 'multer';
 
 @Controller('libros')
 @ApiTags('Libros')
@@ -24,7 +37,33 @@ export class LibroController {
   constructor(private readonly libroService: LibroService) {}
 
   @Post()
-  create(@Body() createLibroDto: CreateLibroDto) {
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    description: 'Datos del libro y la imagen',
+    type: CreateLibroDto,
+  })
+  @UseInterceptors(
+    FileInterceptor('imagen', {
+      storage: diskStorage({
+        destination: './uploads',
+        filename: (req, file, callback) => {
+          const fileExtension = path.extname(file.originalname);
+          const filename = `${crypto.randomBytes(16).toString('hex')}${fileExtension}`;
+
+          callback(null, filename);
+        },
+      }),
+    }),
+  )
+  create(
+    @Body() createLibroDto: CreateLibroDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    if (file) {
+      const imageUrl = `/uploads/${file.filename}`;
+      createLibroDto.imagenUrl = imageUrl;
+    }
+
     return this.libroService.create(createLibroDto);
   }
 

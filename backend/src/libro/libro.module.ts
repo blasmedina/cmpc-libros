@@ -7,6 +7,6 @@ import { Libro } from './entities/libro.entity';
 @Module({
   imports: [SequelizeModule.forFeature([Libro])],
   providers: [LibroService],
-  controllers: [LibroController]
+  controllers: [LibroController],
 })
 export class LibroModule {}

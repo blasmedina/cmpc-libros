@@ -7,6 +7,10 @@ export interface Libro {
   titulo: string;
   precio: string;
   disponible: boolean;
+  imagenUrl: string;
+  autorId: string;
+  editorialId: string;
+  generoId: string;
   autor: Autor;
   editorial: Editorial;
   genero: Genero;

@@ -4,9 +4,9 @@ import { Select, SelectProps } from "./ui/Select";
 import { getGeneros } from "../api/axios";
 import { Genero } from "../types/genero";
 
-interface SelectGenerosProps extends Omit<SelectProps, "children"> {}
+interface GenerosSelectorProps extends Omit<SelectProps, "children"> {}
 
-const SelectGeneros: React.FC<SelectGenerosProps> = ({ ...props }) => {
+const GenerosSelector: React.FC<GenerosSelectorProps> = ({ ...props }) => {
   const [generos, setGeneros] = useState<Genero[]>([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const SelectGeneros: React.FC<SelectGenerosProps> = ({ ...props }) => {
 
   return (
     <Select {...props}>
-      <option value="">Selecciona un genero</option>
+      <option value="">Seleccione un genero</option>
       {generos.map((genero) => (
         <option key={genero.id} value={genero.id}>
           {genero.nombre}
@@ -34,4 +34,4 @@ const SelectGeneros: React.FC<SelectGenerosProps> = ({ ...props }) => {
   );
 };
 
-export default SelectGeneros;
+export default GenerosSelector;

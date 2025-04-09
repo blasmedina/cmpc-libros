@@ -1,5 +1,3 @@
-// create-libro.dto.ts
-
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import {
@@ -20,6 +18,9 @@ export class CreateLibroDto {
   readonly titulo: string;
 
   @IsNumber()
+  @Transform(({ value }) =>
+    typeof value === 'string' ? parseInt(value, 10) : value,
+  )
   @ApiProperty({
     description: 'Precio del libro',
     example: 12345,
@@ -28,6 +29,9 @@ export class CreateLibroDto {
 
   @IsOptional()
   @IsBoolean()
+  @Transform(({ value }) =>
+    typeof value === 'string' ? value.toLowerCase() === 'true' : value,
+  )
   @ApiProperty({
     description: 'Estado del libro',
     example: true,
@@ -63,4 +67,15 @@ export class CreateLibroDto {
     example: 1,
   })
   readonly generoId: number;
+
+  @IsOptional()
+  @IsString()
+  imagenUrl: string;
+
+  @IsOptional()
+  @ApiProperty({
+    description: 'Image Datas',
+    format: 'binary',
+  })
+  imagen?: Express.Multer.File[];
 }

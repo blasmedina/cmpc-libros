@@ -1,18 +1,18 @@
 import React from "react";
 import { Select, SelectProps } from "./ui/Select";
 
-interface SelectDisponibilidadProps extends Omit<SelectProps, "children"> {}
+interface DisponibilidadSelectorProps extends Omit<SelectProps, "children"> {}
 
-const SelectDisponibilidad: React.FC<SelectDisponibilidadProps> = ({
+const DisponibilidadSelector: React.FC<DisponibilidadSelectorProps> = ({
   ...props
 }) => {
   return (
     <Select {...props}>
-      <option value="">Seleccion estado</option>
+      <option value="">Seleccione un estado</option>
       <option value="true">Disponibles</option>
       <option value="false">No disponibles</option>
     </Select>
   );
 };
 
-export default SelectDisponibilidad;
+export default DisponibilidadSelector;

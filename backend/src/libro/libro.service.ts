@@ -13,7 +13,9 @@ export class LibroService {
   ) {}
 
   async create(data: Partial<Libro>) {
-    return this.libroModel.create(data);
+    const libro = await this.libroModel.create(data);
+    const libroRehydrate = await this.findOne(libro.id);
+    return libroRehydrate;
   }
 
   async findAll(query: FindLibroDto, includeDeleted = false) {
@@ -59,7 +61,7 @@ export class LibroService {
 
   async update(id: number, updateLibroDto: UpdateLibroDto) {
     const libro = await this.findOne(id);
-    return libro.update(updateLibroDto);
+    return libro.update(updateLibroDto as any);
   }
 
   async remove(id: number) {

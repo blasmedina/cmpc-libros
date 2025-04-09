@@ -42,12 +42,32 @@ describe('LibroController', () => {
     expect(service).toBeDefined();
   });
 
-  it('should create a libro', async () => {
+  it('should create a libro with image', async () => {
     const dto: CreateLibroDto = { titulo: 'Libro Test' } as any;
-    const result = { id: 1, ...dto };
+    const mockFile = { filename: 'imagen.jpg' } as Express.Multer.File;
+
+    const expectedDto = {
+      ...dto,
+      imagenUrl: '/uploads/imagen.jpg',
+    };
+
+    const result = { id: 1, ...expectedDto };
     mockLibroService.create.mockResolvedValue(result);
 
-    expect(await controller.create(dto)).toEqual(result);
+    const created = await controller.create(dto, mockFile);
+
+    expect(created).toEqual(result);
+    expect(service.create).toHaveBeenCalledWith(expectedDto);
+  });
+
+  it('should create a libro without image', async () => {
+    const dto: CreateLibroDto = { titulo: 'Libro sin imagen' } as any;
+    const result = { id: 2, ...dto };
+    mockLibroService.create.mockResolvedValue(result);
+
+    const created = await controller.create(dto, undefined);
+
+    expect(created).toEqual(result);
     expect(service.create).toHaveBeenCalledWith(dto);
   });
 

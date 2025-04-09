@@ -4,9 +4,11 @@ import { Select, SelectProps } from "./ui/Select";
 import { getEditoriales } from "../api/axios";
 import { Editorial } from "../types/editorial";
 
-interface SelectEditorialesProps extends Omit<SelectProps, "children"> {}
+interface EditorialesSelectorProps extends Omit<SelectProps, "children"> {}
 
-const SelectEditoriales: React.FC<SelectEditorialesProps> = ({ ...props }) => {
+const EditorialesSelector: React.FC<EditorialesSelectorProps> = ({
+  ...props
+}) => {
   const [editoriales, setEditoriales] = useState<Editorial[]>([]);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const SelectEditoriales: React.FC<SelectEditorialesProps> = ({ ...props }) => {
 
   return (
     <Select {...props}>
-      <option value="">Selecciona una editorial</option>
+      <option value="">Seleccione una editorial</option>
       {editoriales.map((editorial) => (
         <option key={editorial.id} value={editorial.id}>
           {editorial.nombre}
@@ -34,4 +36,4 @@ const SelectEditoriales: React.FC<SelectEditorialesProps> = ({ ...props }) => {
   );
 };
 
-export default SelectEditoriales;
+export default EditorialesSelector;
